@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Michael Morales & Associates // The Automated Enterprise</title>
+<meta name="description" content="Sovereign cognitive infrastructure blueprints and production-grade enterprise distribution pipelines.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOKENS: SaaS Production Substrate
+   ============================================================ */
+:root{
+  --bg: #030712;
+  --panel: #0b1329;
+  --panel-hover: #111c3a;
+  --border: #1f293d;
+  --border-focus: #3b82f6;
+  --ink: #f9fafb;
+  --mute: #9ca3af;
+  --mute-dim: #4b5563;
+  --cyber-blue: #3b82f6;
+  --cyber-glow: rgba(59, 130, 246, 0.1);
+  --terminal-green: #10b981;
+  --amber: #f59e0b;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+  --radius: 6px;
+  --max-w: 1200px;
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; background:var(--bg); }
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-sans);
+  -webkit-font-smoothing:antialiased;
+  line-height:1.6;
+  min-height:100vh;
+}
+::selection{ background:var(--cyber-blue); color:var(--ink); }
+::-webkit-scrollbar{ width:8px; height:8px; }
+::-webkit-scrollbar-track{ background:var(--bg); }
+::-webkit-scrollbar-thumb{ background:var(--border); border-radius:4px; }
+::-webkit-scrollbar-thumb:hover{ background:var(--mute-dim); }
+a{ color:inherit; text-decoration:none; }
+button{ font-family:inherit; cursor:pointer; border:none; background:none; color:inherit; }
+input{ font-family:inherit; }
+ul{ list-style:none; }
+
+a:focus-visible, button:focus-visible, input:focus-visible{
+  outline:2px solid var(--cyber-blue);
+  outline-offset:2px;
+}
+
+.wrap{ max-width:var(--max-w); margin:0 auto; padding:0 32px; }
+.mono{ font-family:var(--font-mono); }
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--cyber-blue);
+  font-weight: 600;
+}
+
+/* ============================================================
+   HEADER LAYER
+   ============================================================ */
+header{
+  position:sticky; top:0; z-index:50;
+  background:rgba(3, 7, 18, 0.85);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.header-inner{
+  height:68px;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:16px;
+}
+.brand{
+  display:flex; align-items:center; gap:14px;
+  flex-shrink:0; text-align: left;
+}
+.brand-mark{
+  width:40px; height:40px;
+  background: var(--panel);
+  border:1px solid var(--border);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-mono);
+  font-weight:700; font-size:12px;
+  color:var(--cyber-blue);
+  border-radius: var(--radius);
+  flex-shrink:0;
+}
+.brand-text{ line-height:1.2; }
+.brand-name{
+  font-weight:700; font-size:15px; letter-spacing:-.02em;
+  color: var(--ink);
+}
+.brand-tag{
+  font-family:var(--font-mono);
+  font-size:10px; letter-spacing:.05em; text-transform:uppercase;
+  color:var(--mute);
+}
+nav.primary-nav{
+  display:flex; align-items:center; gap:8px;
+  font-family:var(--font-mono); font-size:13px;
+}
+nav.primary-nav button, nav.primary-nav a{
+  padding:8px 16px; border-radius:var(--radius);
+  color:var(--mute);
+  transition: all .15s ease;
+}
+nav.primary-nav button:hover, nav.primary-nav a:hover{ color:var(--ink); background: var(--panel); }
+nav.primary-nav .active{ color:var(--cyber-blue); background: var(--cyber-glow); border: 1px solid rgba(59,130,246,0.2); }
+.btn-subscribe{
+  flex-shrink:0;
+  font-family:var(--font-mono);
+  font-size:12.5px; font-weight:600;
+  padding:8px 16px;
+  background: var(--cyber-blue);
+  color: var(--ink);
+  border-radius:var(--radius);
+  transition: background .15s ease;
+  white-space:nowrap;
+}
+.btn-subscribe:hover{ background: #2563eb; }
+
+@media (max-width: 768px){
+  .nav-desktop{ display:none; }
+  .wrap { padding: 0 16px; }
+}
+
+/* ============================================================
+   CORE VIEWS
+   ============================================================ */
+main{ min-height:75vh; }
+.view{ display:none; }
+.view.active{ display:block; animation:viewportInit .2s cubic-bezier(0.16, 1, 0.3, 1) both; }
+@keyframes viewportInit{ from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);} }
+
+/* ---- EXPLORER INDEX ---- */
+#view-home{ padding:48px 0 64px; }
+.hero{ max-width:840px; margin-bottom:40px; }
+.hero .eyebrow{ margin-bottom:12px; display:block; }
+.hero h1{
+  font-size:40px; line-height:1.15; font-weight:800; letter-spacing:-.03em;
+  margin-bottom:16px; color: var(--ink);
+}
+.hero p{ color:var(--mute); font-size:16px; line-height:1.6; }
+
+.subscribe-panel{
+  background:linear-gradient(90deg, var(--panel) 0%, rgba(11,19,41,0.4) 100%);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:24px;
+  margin-bottom:48px;
+  display:flex; align-items:center; justify-content:space-between; gap:32px;
+  flex-wrap:wrap;
+}
+.subscribe-copy p:first-child{
+  font-family:var(--font-mono); font-size:11px; color:var(--cyber-blue);
+  text-transform:uppercase; letter-spacing:.1em; margin-bottom:4px; font-weight: 600;
+}
+.subscribe-copy p:last-child{ font-size:14px; color:var(--mute); max-width:460px; }
+.subscribe-form{ display:flex; gap:8px; flex:1; min-width:280px; max-width:420px; }
+.subscribe-form input{
+  flex:1;
+  background: var(--bg);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:10px 14px;
+  color:var(--ink);
+  font-family:var(--font-mono);
+  font-size:13px;
+  transition: border-color .15s ease;
+}
+.subscribe-form input::placeholder{ color:var(--mute-dim); }
+.subscribe-form input:focus{ border-color:var(--border-focus); outline:none; }
+.subscribe-form button{
+  flex-shrink:0;
+  background:var(--ink);
+  color:var(--bg);
+  font-family:var(--font-mono);
+  font-weight:700; font-size:13px;
+  padding:10px 20px;
+  border-radius:var(--radius);
+  transition: opacity .15s ease;
+}
+.subscribe-form button:hover{ opacity:.9; }
+.subscribe-confirm{
+  display:none;
+  font-family:var(--font-mono); font-size:12px; color:var(--terminal-green);
+  width:100%; margin-top:6px;
+}
+.subscribe-confirm.show{ display:block; }
+
+.library-group { margin-bottom:40px; }
+.library-group-label{
+  font-family:var(--font-mono); font-size:12px; color:var(--mute-dim);
+  letter-spacing:.05em; text-transform: uppercase; font-weight: 700;
+  margin-bottom:8px; padding-bottom:8px;
+  border-bOttom:1px solid var(--border);
+}
+.item-table{ width:100%; border-collapse:collapse; }
+.item-row{
+  display: grid; grid-template-columns: 80px 1fr 120px; align-items: center;
+  padding:14px 12px; border-radius: var(--radius);
+  border-bottom:1px solid rgba(31,41,61,0.4);
+  transition: background .12s ease, border-color .12s ease;
+}
+.item-row.clickable{ cursor:pointer; }
+.item-row.clickable:hover{ background:var(--panel); border-color: var(--border); }
+.item-left{ display:flex; align-items:center; gap:10px; min-width:0; }
+.item-edition{ font-family:var(--font-mono); font-size:12px; color:var(--cyber-blue); font-weight:600; }
+.item-title{ font-size:15px; font-weight:600; color: var(--ink); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.item-title.locked{ color:var(--mute-dim); font-weight:400; }
+.item-date{ font-family:var(--font-mono); font-size:12px; color:var(--mute); text-align: right; }
+.item-date.amber{ color:var(--amber); }
+.lock-icon{ font-size:11px; color: var(--mute-dim); }
+
+@media (max-width:640px){
+  .item-row { grid-template-columns: 1fr 100px; padding: 12px 6px; }
+  .item-edition { display:none; }
+}
+
+/* ============================================================
+   BLUEPRINT ARTIFACT LAYOUT (NODE VIEW)
+   ============================================================ */
+#view-node{ padding:40px 0 64px; }
+.back-link{
+  font-family:var(--font-mono); font-size:13px; color:var(--mute);
+  display:inline-flex; align-items:center; gap:6px; margin-bottom:32px;
+}
+.back-link:hover{ color:var(--cyber-blue); }
+
+.node-grid{ display:grid; grid-template-columns:220px 1fr; gap:64px; }
+@media (max-width:960px){
+  .node-grid{ grid-template-columns:1fr; gap:0; }
+  .node-toc-wrap{ display:none; }
+}
+.node-toc-sticky{ position:sticky; top:100px; }
+.toc-label{
+  font-family:var(--font-mono); font-size:11px; color:var(--mute-dim);
+  text-transform:uppercase; letter-spacing:.05em; margin-bottom:12px; font-weight: 700;
+}
+.toc-nav{ display:flex; flex-direction:column; border-left:2px solid var(--border); }
+.toc-link{
+  font-family:var(--font-mono); font-size:12px; color:var(--mute);
+  padding:6px 0 6px 16px; margin-left:-2px; border-left:2px solid transparent;
+}
+.toc-link:hover{ color:var(--ink); }
+.toc-link.toc-active{ color:var(--cyber-blue); border-left-color:var(--cyber-blue); font-weight:600; }
+
+.node-eyebrow{ margin-bottom:8px; }
+.node-title{ font-size:36px; font-weight:800; letter-spacing:-.03em; line-height:1.2; margin-bottom:12px; }
+.node-summary{ color:var(--mute); font-size:16px; line-height:1.6; max-width:720px; margin-bottom:24px; }
+.node-meta{
+  font-family:var(--font-mono); font-size:12px; color:var(--mute-dim);
+  padding-bottom:24px; margin-bottom:32px; border-bottom:1px solid var(--border);
+}
+
+.locked-banner{
+  border:1px solid rgba(245,158,11,0.3); background:rgba(245,158,11,0.05);
+  border-radius:var(--radius); padding:12px 16px; font-family:var(--font-mono);
+  font-size:12px; color:var(--amber); margin-bottom:32px;
+}
+
+/* HIGH-CONVERSION SAAS DEPENDENCY MODULES */
+.deps-label{
+  font-family:var(--font-mono); font-size:11px; color:var(--cyber-blue);
+  text-transform:uppercase; letter-spacing:.1em; margin-bottom:12px; font-weight:700;
+}
+.deps-wrap{ display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:16px; margin-bottom:40px; }
+.dep-card{
+  display:flex; flex-direction: column; justify-content: space-between;
+  border:1px solid var(--border); background:var(--panel);
+  border-radius:var(--radius); padding:20px; transition:all .15s ease;
+}
+.dep-card:hover{ border-color: var(--border-focus); background: var(--panel-hover); transform: translateY(-1px); }
+.dep-name{ font-family:var(--font-mono); font-size:14px; font-weight:700; color:var(--ink); margin-bottom:6px; }
+.dep-desc{ font-size:13px; color:var(--mute); line-height:1.5; margin-bottom:16px; flex-grow: 1; }
+.dep-action-btn{
+  width: 100%; text-align: center; font-family: var(--font-mono); font-size: 11px;
+  font-weight: 700; text-transform: uppercase; letter-spacing: .05em;
+  background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3);
+  color: var(--cyber-blue); padding: 10px 14px; border-radius: var(--radius);
+  transition: all .15s ease;
+}
+.dep-card:hover .dep-action-btn { background: var(--cyber-blue); color: var(--ink); border-color: var(--cyber-blue); }
+
+.doc-section{ margin-bottom:16px; scroll-margin-top:100px; }
+.doc-section h3{
+  font-size:20px; font-weight:700; letter-spacing:-.02em;
+  margin-top:44px; margin-bottom:14px; color: var(--ink);
+}
+.doc-section:first-of-type h3{ margin-top:0; }
+.doc-section p{ color: #d1d5db; line-height:1.7; font-size:15.5px; margin-bottom:16px; }
+.doc-section ul{ margin-bottom:20px; }
+.doc-section li{
+  color: #d1d5db; font-size:15.5px; line-height:1.6;
+  margin-bottom:10px; padding-left:20px; position:relative;
+}
+.doc-section li::before{
+  content:'//'; position:absolute; left:0; color:var(--cyber-blue); font-family: var(--font-mono); font-size: 13px;
+}
+.doc-section strong{ color:var(--ink); font-weight:600; }
+.doc-section code{
+  font-family:var(--font-mono); font-size:.9em;
+  background:rgba(31,41,55,0.5); border:1px solid var(--border);
+  color: #f3f4f6; padding:.15rem .35rem; border-radius:4px;
+}
+
+/* ============================================================
+   THE PROTOCOL
+   ============================================================ */
+#view-protocol{ padding:48px 0 64px; max-width:760px; }
+.protocol-title{ font-size:36px; font-weight:800; letter-spacing:-.03em; margin:12px 0 24px; }
+.protocol-body p{ color:#d1d5db; line-height:1.75; font-size:16px; margin-bottom:20px; }
+.protocol-body h3{ font-size:20px; font-weight:700; margin:40px 0 12px; color: var(--ink); letter-spacing: -.01em;}
+.protocol-body ul{ margin-bottom:20px; }
+.protocol-body li{ color:#d1d5db; line-height:1.7; font-size:16px; margin-bottom:10px; }
+.protocol-body strong{ color:var(--ink); font-weight:600; }
+
+.audit-cta{
+  margin-top:40px; border:1px solid var(--border);
+  background: linear-gradient(135deg, var(--panel) 0%, rgba(3,7,18,1) 100%);
+  border-radius:var(--radius); padding:28px;
+}
+.audit-cta .eyebrow{ margin-bottom:6px; display:block; }
+.audit-cta p{ font-size:14px; color:var(--mute); margin-bottom:20px; max-width:520px; }
+.audit-btn{
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--font-mono); font-size:13px; font-weight:700;
+  background:var(--ink); color:var(--bg);
+  padding:10px 20px; border-radius:var(--radius);
+  transition: opacity .15s ease; text-transform: uppercase; letter-spacing: .02em;
+}
+.audit-btn:hover{ opacity:.9; }
+
+/* ============================================================
+   FOOTER FRAME
+   ============================================================ */
+footer{ border-top:1px solid var(--border); margin-top: 64px; }
+.footer-inner{
+  padding:32px 0; display:flex; align-items:center; justify-content:space-between;
+  gap:16px; flex-wrap:wrap;
+}
+.footer-inner p{ font-family:var(--font-mono); font-size:11px; color:var(--mute-dim); }
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation:none !important; transition:none !important; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="wrap header-inner">
+    <button class="brand" onclick="goTo('home')" aria-label="Home">
+      <span class="brand-mark">MM&amp;A</span>
+      <span class="brand-text">
+        <span class="brand-name">Michael Morales &amp; Associates</span><br>
+        <span class="brand-tag">The Automated Enterprise</span>
+      </span>
+    </button>
+    <nav class="primary-nav nav-desktop">
+      <button onclick="goTo('home')" data-nav="home">Blueprint Library</button>
+      <button onclick="goTo('protocol')" data-nav="protocol">Firm Protocol</button>
+      <a href="mailto:hello@michaelmoralesassociates.com">System Access</a>
+    </nav>
+    <button class="btn-subscribe" onclick="goTo('home'); focusSub();">Deploy Pipeline</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ EXPLORER INDEX ============ -->
+  <section id="view-home" class="view active">
+    <div class="hero">
+      <span class="eyebrow">SYSTEM STATE: LIVE // PROTOCOL: CIVITAS MACHINA</span>
+      <h1>Sovereign Cognitive Infrastructure Blueprints</h1>
+      <p>Production-grade system documentation for enterprise automation loops. Every blueprint tracked in this library has been executed against live workflow loads and cleared compliance evaluation. Review the open-source topologies below to implement—or secure formal architecture deployment rights via our consulting engine.</p>
+    </div>
+
+    <div class="subscribe-panel">
+      <div class="subscribe-copy">
+        <p>// AUTOMATED RUNTIME TELEMETRY</p>
+        <p>Blueprints compiled and pushed every 14 days. Zero marketing fluff. Pure structural logic, dependency mapping, and configuration schemas delivered directly to your node.</p>
+      </div>
+      <form class="subscribe-form" onsubmit="return handleSubscribe(event)">
+        <input id="sub-email" type="email" required placeholder="operator@enterprise.com">
+        <button type="submit">Subscribe</button>
+      </form>
+      <p id="sub-confirm" class="subscribe-confirm">Initialization complete. Next payload drops within 14 days.</p>
+    </div>
+
+    <div id="library-tree"></div>
+  </section>
+
+  <!-- ============ BLUEPRINT DEEP DIVE NODE ============ -->
+  <section id="view-node" class="view">
+    <button class="back-link" onclick="goTo('home')">&larr; ESCAPE_TO_INDEX</button>
+    <div class="node-grid">
+      <aside class="node-toc-wrap">
+        <div class="node-toc-sticky">
+          <p class="toc-label">Pipeline Schema</p>
+          <nav id="node-toc" class="toc-nav"></nav>
+        </div>
+      </aside>
+      <article id="node-content"></article>
+    </div>
+  </section>
+
+  <!-- ============ FIRM PROTOCOL ============ -->
+  <section id="view-protocol" class="view">
+    <span class="eyebrow">FILE: core_protocol.md</span>
+    <h1 class="protocol-title">The Operational Protocol</h1>
+    <div class="protocol-body">
+      <p><strong>Michael Morales &amp; Associates</strong> functions as an elite systems architecture firm specializing in the design and execution of sovereign cognitive infrastructure. Led by a Principal AI Systems Architect, the firm isolates manual bottlenecks and tribal workflows within scaling mid-market enterprises, re-engineering them into highly resilient, deterministic automated environments.</p>
+
+      <p>Typical "AI consulting" installations layer shallow chatbot wrappers over fragile operational bases. We build custom multi-model routing layers, high-density data pipelines, and immutable governance frameworks. A blueprint is not indexed into this registry until it has successfully managed production scale and eliminated tracking drift.</p>
+
+      <h3>Civitas Machina</h3>
+      <p>Civitas Machina represents our underlying R&amp;D framework. It serves as the sandbox where next-generation orchestration graphs, token optimization logic, and continuous compliance protocols are hard tested. Michael Morales &amp; Associates transforms these proven architectures into corporate operational stability.</p>
+
+      <h3>Engagement Architecture</h3>
+      <ul>
+        <li><strong>System Audit</strong> &mdash; Comprehensive mapping and stress-testing of an active operational layer (Onboarding, GRC, or Resource Allocation). Delivered as a functional system graph with an prioritized execution plan.</li>
+        <li><strong>Infrastructure Build</strong> &mdash; Direct deployment and integration of a cataloged blueprint adjusted to your internal technical dependencies, security postures, and custom parameters.</li>
+        <li><strong>Architecture Retainer</strong> &mdash; Ongoing systems optimization and scaling protocols for enterprises continuously expanding their autonomous automation footprint.</li>
+      </ul>
+
+      <div class="audit-cta">
+        <span class="eyebrow">Initiate Infrastructure Review</span>
+        <p>Identify the single operational line item generating the highest manual overhead in your company. We will map its automated alternative.</p>
+        <a class="audit-btn" href="mailto:hello@michaelmoralesassociates.com?subject=Infrastructure%20Review%20Request">Request System Audit</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <p>&copy; 2026 Michael Morales &amp; Associates. Runtime Blueprints licensed under Civitas Machina protocols.</p>
+    <p>Zero Bloat. Pure Logic.</p>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   CORE SCHEMAS: The Blueprint Datastore
+   ============================================================ */
+const LIBRARY = [
+  {
+    category: "System Pipelines",
+    items: [
+      { id: "zero-touch-onboarding", edition: "Ed. 02", title: "Zero-Touch Client Onboarding", date: "Jul 2026", status: "live" },
+      { id: "composable-work-os",     edition: "Ed. 01", title: "The Composable Work OS",       date: "Jun 2026", status: "live" },
+    ]
+  },
+  {
+    category: "Governance & GRC",
+    items: [
+      { id: "soc2-audit-loops", edition: "Ed. 03", title: "Continuous SOC2 Audit Loops", date: "Forthcoming", status: "locked" },
+    ]
+  },
+  {
+    category: "Multi-Model Resource Management",
+    items: [
+      { id: "model-router", edition: "Ed. 04", title: "The Cost-Aware Model Router", date: "Forthcoming", status: "locked" },
+    ]
+  },
+];
+
+const NODES = {
+  "zero-touch-onboarding": {
+    edition: "Ed. 02",
+    title: "Zero-Touch Client Onboarding",
+    date: "Jul 2026",
+    category: "System Pipelines",
+    summary: "A fully automated intake-to-kickoff pipeline that takes a signed contract to a provisioned client workspace with zero manual data entry.",
+    sections: [
+      { id: "architecture", label: "System Architecture", body: `
+        <p>The core problem with most onboarding pipelines is not the automation itself, it is the handoffs. Every tool switch is a place where a human must remember to act, and humans forget. This blueprint collapses six manual handoffs into one event-driven pipeline governed by a single source of truth.</p>
+        <p>The pipeline triggers on contract signature, delivered via an e-signature webhook, and fans out to five parallel workers: workspace provisioning, calendar scheduling, billing setup, document generation, and internal notification. Each worker is idempotent and reports status to a central <code>onboarding_state</code> table, so a failed step can retry without duplicating work already completed.</p>
+        <h3>Why event-driven, not sequential</h3>
+        <p>A sequential chain, the Zapier-style model where step two waits on step one, means a single slow API call blocks everything behind it. Parallel execution against a shared state table reduces average time-to-provisioned-workspace from approximately 40 minutes of scattered manual effort to under 90 seconds of automated execution, with human attention reserved for a genuine exception queue.</p>
+      `},
+      { id: "stack", label: "The Tech Stack", body: `
+        <p>The stack is deliberately unremarkable where it can be, and precise where it must be. Unremarkable infrastructure fails less often, and when it does fail, it fails in familiar, well-documented ways.</p>
+        <ul>
+          <li><strong>Trigger layer:</strong> Signature webhook into a durable, at-least-once delivery queue</li>
+          <li><strong>Orchestration:</strong> MindStudio agent flows govern branching logic and exception routing</li>
+          <li><strong>State store:</strong> A single Postgres table as the source of truth, rather than five tools with five conflicting definitions of "done"</li>
+          <li><strong>Workspace provisioning:</strong> monday.com boards generated from a template via API, pre-populated with the client's actual contract terms</li>
+          <li><strong>Notification:</strong> A single scoped channel with structured status updates, not an open firehose</li>
+        </ul>
+      `},
+      { id: "api", label: "The API Matrix", body: `
+        <p>Each integration point in this pipeline is a place where the system can fail silently. Every one is given a documented contract rather than an informal assumption.</p>
+        <ul>
+          <li><code>POST /webhook/signature</code> &mdash; entry point; verifies the signature payload and writes the initial state row</li>
+          <li><code>POST /provision/workspace</code> &mdash; calls the monday.com API, retries three times with exponential backoff before escalating to the exception queue</li>
+          <li><code>POST /billing/init</code> &mdash; creates the subscription record, deliberately decoupled from provisioning so a billing failure never blocks client access</li>
+          <li><code>GET /onboarding/state/:id</code> &mdash; internal read endpoint polled by the notification bot to render live status</li>
+        </ul>
+      `},
+      { id: "verification", label: "The Verification Checklist", body: `
+        <p>An onboarding pipeline that fails silently is more costly than no pipeline at all, since no one notices the client was dropped. This checklist runs on every deploy and nightly against synthetic test contracts.</p>
+        <ul>
+          <li>Synthetic contract triggers the full pipeline end-to-end in under two minutes</li>
+          <li>A worker killed mid-run does not prevent the remaining four from completing, and the state table reflects partial success rather than a false "complete"</li>
+          <li>Duplicate webhook delivery does not create a duplicate workspace</li>
+          <li>The exception queue notifies a human within five minutes of any step exceeding its retry budget</li>
+        </ul>
+      `},
+    ],
+    deps: [
+      { name: "MindStudio", desc: "Orchestration layer governing multi-model branching agent logic, schema parsing, and exception routing.", url: "https://get.mindstudio.ai/bztekqrbnd1l" },
+      { name: "monday.com", desc: "Enterprise Work OS layer utilized as the centralized, writeable system database and client boards workspace.", url: "#" },
+    ]
+  },
+
+  "composable-work-os": {
+    edition: "Ed. 01",
+    title: "The Composable Work OS",
+    date: "Jun 2026",
+    category: "System Pipelines",
+    summary: "A single operational backbone that replaces six disconnected SaaS tools with one board-based system of record, without losing any individual tool's strengths.",
+    sections: [
+      { id: "architecture", label: "System Architecture", body: `
+        <p>Most mid-market companies do not have a tooling problem; they have a <strong>source-of-truth problem</strong>. Six tools, six databases, six slightly different answers to the same question about client status. The Composable Work OS does not remove the six tools. It designates one board-based platform as the canonical record and converts everything else into a synced view.</p>
+        <p>The architecture follows a hub-and-spoke sync model: monday.com sits at the hub as the writable source of truth, and every other tool, CRM, support desk, invoicing, becomes a read-mostly spoke synchronized in near-real time through webhook delivery and scheduled reconciliation.</p>
+      `},
+      { id: "stack", label: "The Tech Stack", body: `
+        <ul>
+          <li><strong>Hub:</strong> monday.com, configured as the canonical operational database</li>
+          <li><strong>Sync engine:</strong> Custom middleware handling field mapping and conflict resolution between hub and spokes</li>
+          <li><strong>Reconciliation:</strong> A nightly batch process that diffs hub state against each spoke and flags drift rather than silently overwriting it</li>
+        </ul>
+      `},
+      { id: "api", label: "The API Matrix", body: `
+        <ul>
+          <li><code>POST /sync/inbound/:tool</code> &mdash; receives spoke-tool webhooks and maps fields into the hub schema</li>
+          <li><code>POST /sync/outbound/:tool</code> &mdash; pushes hub changes outward, rate-limited to each spoke's API quota</li>
+          <li><code>GET /reconcile/drift</code> &mdash; returns records where hub and spoke have disagreed for more than 24 hours</li>
+        </ul>
+      `},
+      { id: "verification", label: "The Verification Checklist", body: `
+        <ul>
+          <li>A field changed in the hub appears in every spoke within 60 seconds</li>
+          <li>Simultaneous conflicting edits resolve deterministically, not by which request happened to arrive last</li>
+          <li>The nightly drift report notifies a human only above a defined threshold, not on every minor mismatch</li>
+        </ul>
+      `},
+    ],
+    deps: [
+      { name: "MindStudio", desc: "Orchestration layer governing multi-model branching agent logic, schema parsing, and exception routing.", url: "https://get.mindstudio.ai/bztekqrbnd1l" },
+      { name: "monday.com", desc: "Canonical operational hub for the entire sync architecture.", url: "#" },
+    ]
+  },
+
+  "soc2-audit-loops": {
+    edition: "Ed. 03",
+    title: "Continuous SOC2 Audit Loops",
+    date: "Forthcoming",
+    category: "Governance & GRC",
+    locked: true,
+    summary: "An always-on compliance monitoring loop that converts SOC2 from an annual fire drill into a continuously verified system state, using Vanta as the evidence engine.",
+    sections: [
+      { id: "architecture", label: "System Architecture", body: `
+        <p>This blueprint is currently in field testing against a live client environment. Publication follows completion of a full audit cycle without a manual evidence-collection intervention.</p>
+        <p>In the interim: the governing principle treats compliance controls as monitored infrastructure rather than a spreadsheet updated once a year under deadline pressure. Subscribers receive this edition the day it clears for publication.</p>
+      `},
+      { id: "stack", label: "The Tech Stack", body: `<p>Withheld pending publication.</p>` },
+      { id: "api", label: "The API Matrix", body: `<p>Withheld pending publication.</p>` },
+      { id: "verification", label: "The Verification Checklist", body: `<p>Withheld pending publication.</p>` },
+    ],
+    deps: [
+      { name: "Vanta", desc: "Continuous evidence collection and continuous automated control monitoring.", url: "#" },
+    ]
+  },
+
+  "model-router": {
+    edition: "Ed. 04",
+    title: "The Cost-Aware Model Router",
+    date: "Forthcoming",
+    category: "Multi-Model Resource Management",
+    locked: true,
+    summary: "A routing layer that directs each inference call to the least costly model capable of handling it, without a perceptible drop in output quality.",
+    sections: [
+      { id: "architecture", label: "System Architecture", body: `<p>Currently running against production traffic. The complete architectural teardown publishes once cost-reduction figures are verified across a full billing cycle.</p>` },
+      { id: "stack", label: "The Tech Stack", body: `<p>Withheld pending publication.</p>` },
+      { id: "api", label: "The API Matrix", body: `<p>Withheld pending publication.</p>` },
+      { id: "verification", label: "The Verification Checklist", body: `<p>Withheld pending publication.</p>` },
+    ],
+    deps: [
+      { name: "MindStudio", desc: "Orchestration layer governing multi-model branching agent logic, schema parsing, and exception routing.", url: "https://get.mindstudio.ai/bztekqrbnd1l" }
+    ]
+  },
+};
+
+/* ============================================================
+   INTERACTION: Pipeline Renderer
+   ============================================================ */
+function renderLibrary(){
+  const root = document.getElementById('library-tree');
+  root.innerHTML = LIBRARY.map(group => `
+    <div class="library-group">
+      <div class="library-group-label">${escapeHtml(group.category)}</div>
+      <div class="item-table">
+        ${group.items.map(renderItemRow).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderItemRow(item){
+  const isLocked = item.status === 'locked';
+  const clickable = isLocked ? '' : `onclick="openNode('${item.id}')" role="button" tabindex="0"`;
+  const rowClass = isLocked ? 'item-row' : 'item-row clickable';
+  const dateClass = isLocked ? 'item-date amber' : 'item-date';
+  const titleClass = isLocked ? 'item-title locked' : 'item-title';
+  const icon = isLocked ? '<span class="lock-icon">&#128274;</span>' : '';
+  return `
+    <div class="${rowClass}" ${clickable}>
+      <div class="item-left">
+        ${icon}
+        <span class="item-edition mono">${item.edition}</span>
+        <span class="${titleClass}">${escapeHtml(item.title)}</span>
+      </div>
+      <span class="${dateClass}">[${item.date}]</span>
+    </div>
+  `;
+}
+
+function escapeHtml(str){
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+/* ============================================================
+   INTERACTION: Node Generator
+   ============================================================ */
+function renderNode(id){
+  const node = NODES[id];
+  if(!node) return;
+
+  document.getElementById('node-toc').innerHTML = node.sections.map((s,i) => `
+    <a href="#sec-${s.id}" onclick="setActiveToc('${s.id}')" data-toc="${s.id}" class="toc-link">
+      SYS_${s.id.toUpperCase()}
+    </a>
+  `).join('');
+
+  const depsBlock = (node.deps && node.deps.length) ? `
+    <p class="deps-label">// System Dependencies Required</p>
+    <div class="deps-wrap">
+      ${node.deps.map(d => `
+        <a href="${d.url}" target="_blank" class="dep-card">
+          <div>
+            <span class="dep-name">${d.name}</span>
+            <p class="dep-desc">${d.desc}</p>
+          </div>
+          <span class="dep-action-btn">Deploy Dependency &rarr;</span>
+        </a>
+      `).join('')}
+    </div>
+  ` : '';
+
+  const lockedBanner = node.locked ? `
+    <div class="locked-banner">&#128274; CORE CONFIGURATION LOCKED // SYSTEM IN FIELD TESTING CODESAMPLED FOR ACTIVE SUBSCRIBERS.</div>
+  ` : '';
+
+  document.getElementById('node-content').innerHTML = `
+    <span class="eyebrow node-eyebrow">${node.edition} // ${node.category}</span>
+    <h1 class="node-title">${node.title}</h1>
+    <p class="node-summary">${node.summary}</p>
+    <p class="node-meta mono">COMPILED: ${node.date}</p>
+    ${lockedBanner}
+    ${depsBlock}
+    ${node.sections.map(s => `
+      <div id="sec-${s.id}" class="doc-section">
+        <h3>${s.label}</h3>
+        ${s.body}
+      </div>
+    `).join('')}
+  `;
+}
+
+function setActiveToc(id){
+  document.querySelectorAll('[data-toc]').forEach(el => el.classList.remove('toc-active'));
+  const el = document.querySelector(`[data-toc="${id}"]`);
+  if(el) el.classList.add('toc-active');
+}
+
+/* ============================================================
+   NAVIGATION MUX
+   ============================================================ */
+function goTo(view){
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + view).classList.add('active');
+  document.querySelectorAll('[data-nav]').forEach(b => b.classList.remove('active'));
+  const navBtn = document.querySelector(`[data-nav="${view}"]`);
+  if(navBtn) navBtn.classList.add('active');
+  window.scrollTo({ top: 0 });
+  history.replaceState(null, '', view === 'home' ? '#' : '#' + view);
+}
+
+function openNode(id){
+  renderNode(id);
+  goTo('node');
+  history.replaceState(null, '', '#blueprint/' + id);
+  if(NODES[id].sections[0]) setActiveToc(NODES[id].sections[0].id);
+}
+
+function focusSub(){
+  setTimeout(() => {
+    const el = document.getElementById('sub-email');
+    if(el) el.focus();
+  }, 50);
+}
+
+function handleSubscribe(e){
+  e.preventDefault();
+  const confirmEl = document.getElementById('sub-confirm');
+  confirmEl.classList.add('show');
+  e.target.reset();
+  setTimeout(() => confirmEl.classList.remove('show'), 4000);
+  return false;
+}
+
+/* ============================================================
+   INITIALIZATION
+   ============================================================ */
+renderLibrary();
+
+(function initRoute(){
+  const hash = window.location.hash.replace('#', '');
+  if(hash.startsWith('blueprint/')){
+    const id = hash.split('/')[1];
+    if(NODES[id]){ openNode(id); return; }
+  }
+  if(hash === 'protocol'){ goTo('protocol'); return; }
+  goTo('home');
+})();
+</script>
+
+</body>
+</html>
