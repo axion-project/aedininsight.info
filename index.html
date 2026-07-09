@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>axion-project // Repository Index</title>
+<meta name="description" content="Full public repository index for axion-project, rendered in the Civitas Machina system aesthetic.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6C8HWKXF6P"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6C8HWKXF6P');
+</script>
+<style>
+/* ============================================================
+   TOKENS: SaaS Production Substrate (matched to source)
+   ============================================================ */
+:root{
+  --bg: #030712;
+  --panel: #0b1329;
+  --panel-hover: #111c3a;
+  --border: #1f293d;
+  --border-focus: #3b82f6;
+  --ink: #f9fafb;
+  --mute: #9ca3af;
+  --mute-dim: #4b5563;
+  --cyber-blue: #3b82f6;
+  --cyber-glow: rgba(59, 130, 246, 0.1);
+  --terminal-green: #10b981;
+  --amber: #f59e0b;
+  --purple: #a78bfa;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+  --radius: 6px;
+  --max-w: 1200px;
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; background:var(--bg); }
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-sans);
+  -webkit-font-smoothing:antialiased;
+  line-height:1.6;
+  min-height:100vh;
+}
+::selection{ background:var(--cyber-blue); color:var(--ink); }
+::-webkit-scrollbar{ width:8px; height:8px; }
+::-webkit-scrollbar-track{ background:var(--bg); }
+::-webkit-scrollbar-thumb{ background:var(--border); border-radius:4px; }
+::-webkit-scrollbar-thumb:hover{ background:var(--mute-dim); }
+a{ color:inherit; text-decoration:none; }
+button{ font-family:inherit; cursor:pointer; border:none; background:none; color:inherit; }
+input{ font-family:inherit; }
+ul{ list-style:none; }
+
+a:focus-visible, button:focus-visible, input:focus-visible{
+  outline:2px solid var(--cyber-blue);
+  outline-offset:2px;
+}
+
+.wrap{ max-width:var(--max-w); margin:0 auto; padding:0 32px; }
+.mono{ font-family:var(--font-mono); }
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--cyber-blue);
+  font-weight: 600;
+}
+
+@media (max-width: 768px){
+  .wrap { padding: 0 16px; }
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+header{
+  position:sticky; top:0; z-index:50;
+  background:rgba(3, 7, 18, 0.85);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.header-inner{
+  height:68px;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:16px;
+}
+.brand{ display:flex; align-items:center; gap:14px; }
+.brand-mark{
+  width:40px; height:40px;
+  background: var(--panel);
+  border:1px solid var(--border);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-mono);
+  font-weight:700; font-size:12px;
+  color:var(--cyber-blue);
+  border-radius: var(--radius);
+  flex-shrink:0;
+}
+.brand-text{ line-height:1.2; text-align:left; }
+.brand-name{ font-weight:700; font-size:15px; letter-spacing:-.02em; color: var(--ink); }
+.brand-tag{ font-family:var(--font-mono); font-size:10px; letter-spacing:.05em; text-transform:uppercase; color:var(--mute); }
+.header-stats{
+  font-family:var(--font-mono); font-size:12.5px; color:var(--mute);
+  display:flex; align-items:center; gap:8px;
+}
+.header-stats strong{ color:var(--ink); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+main{ padding:48px 0 80px; }
+.hero{ max-width:840px; margin-bottom:32px; }
+.hero .eyebrow{ margin-bottom:12px; display:block; }
+.hero h1{
+  font-size:38px; line-height:1.15; font-weight:800; letter-spacing:-.03em;
+  margin-bottom:16px; color: var(--ink);
+}
+.hero p{ color:var(--mute); font-size:16px; line-height:1.6; }
+.hero a.gh-link{ color:var(--cyber-blue); font-family:var(--font-mono); font-size:13px; }
+.hero a.gh-link:hover{ text-decoration:underline; }
+
+/* ============================================================
+   FILTER BAR
+   ============================================================ */
+.filter-bar{
+  display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+  padding:16px 0 28px; border-bottom:1px solid var(--border); margin-bottom:36px;
+}
+.filter-chip{
+  font-family:var(--font-mono); font-size:12px; font-weight:600;
+  padding:7px 14px; border-radius:999px;
+  border:1px solid var(--border); color:var(--mute);
+  transition: all .15s ease;
+}
+.filter-chip:hover{ color:var(--ink); border-color:var(--mute-dim); }
+.filter-chip.active{ color:var(--cyber-blue); background:var(--cyber-glow); border-color:rgba(59,130,246,0.4); }
+.filter-count{ opacity:.6; margin-left:4px; }
+
+/* ============================================================
+   REPO GROUPS + CARDS
+   ============================================================ */
+.repo-group{ margin-bottom:44px; }
+.repo-group-label{
+  font-family:var(--font-mono); font-size:12px; color:var(--mute-dim);
+  letter-spacing:.05em; text-transform: uppercase; font-weight: 700;
+  margin-bottom:16px; padding-bottom:8px;
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between;
+}
+.repo-grid{
+  display:grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap:16px;
+}
+.repo-card{
+  display:flex; flex-direction:column;
+  border:1px solid var(--border); background:var(--panel);
+  border-radius:var(--radius); padding:20px;
+  transition:all .15s ease;
+}
+.repo-card:hover{ border-color: var(--border-focus); background: var(--panel-hover); transform: translateY(-1px); }
+.repo-card-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:10px; }
+.repo-name{
+  font-family:var(--font-mono); font-size:14.5px; font-weight:700; color:var(--ink);
+  overflow-wrap:anywhere;
+}
+.repo-name:hover{ color:var(--cyber-blue); }
+.repo-arrow{ color:var(--mute-dim); font-size:14px; flex-shrink:0; }
+.repo-card:hover .repo-arrow{ color:var(--cyber-blue); }
+.repo-desc{ font-size:13.5px; color:var(--mute); line-height:1.55; margin-bottom:18px; flex-grow:1; }
+.repo-desc.placeholder{ font-style:italic; color:var(--mute-dim); }
+.repo-meta{
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  font-family:var(--font-mono); font-size:11px; color:var(--mute-dim);
+  padding-top:12px; border-top:1px solid rgba(31,41,61,0.6);
+}
+.repo-lang{ display:flex; align-items:center; gap:6px; }
+.lang-dot{ width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.repo-updated{ white-space:nowrap; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{ border-top:1px solid var(--border); margin-top: 64px; }
+.footer-inner{
+  padding:32px 0; display:flex; align-items:center; justify-content:space-between;
+  gap:16px; flex-wrap:wrap;
+}
+.footer-inner p{ font-family:var(--font-mono); font-size:11px; color:var(--mute-dim); }
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation:none !important; transition:none !important; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="wrap header-inner">
+    <div class="brand">
+      <span class="brand-mark">A/P</span>
+      <span class="brand-text">
+        <span class="brand-name">axion-project</span><br>
+        <span class="brand-tag">Repository Index</span>
+      </span>
+    </div>
+    <div class="header-stats">
+      <span><strong id="stat-total">0</strong> repos</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <span class="eyebrow">SOURCE: GITHUB.COM/AXION-PROJECT</span>
+    <h1>Public Repository Index</h1>
+    <p>Every public repository currently live on the account, pulled straight from GitHub and grouped by what it actually does. Click any card to open the repo. <a class="gh-link" href="https://github.com/axion-project" target="_blank">View raw profile &rarr;</a></p>
+  </div>
+
+  <div class="filter-bar" id="filter-bar"></div>
+
+  <div id="repo-root"></div>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <p>&copy; 2026 axion-project. Index generated from public GitHub data.</p>
+    <p id="footer-updated" class="mono">Snapshot: &mdash;</p>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   DATA: pulled from github.com/axion-project (all 29 public repos)
+   Descriptions marked "placeholder: true" had no description set
+   on GitHub itself — short summaries were inferred from the repo
+   name/language and should be swapped for the real one-liners
+   whenever you get a chance.
+   ============================================================ */
+const REPOS = [
+  // ---- ORAC / Cognitive Core ----
+  { name:"ORAC", group:"ORAC / Cognitive Core", lang:"Python",
+    desc:"Minimum Command Protocol (MCP) for ORAC, a strategic control framework for deploying, governing, and safeguarding private LLM instances under sovereign AI operations.",
+    updated:"2025-08-02" },
+  { name:"THORAC", group:"ORAC / Cognitive Core", lang:"Python",
+    desc:"Companion project to ORAC in the Civitas Machina line.", placeholder:true,
+    updated:"2025-08-05" },
+  { name:"THORAC-INFRA", group:"ORAC / Cognitive Core", lang:"Python",
+    desc:"Infrastructure and deployment tooling for THORAC.", placeholder:true,
+    updated:"2025-08-07" },
+  { name:"orac_embedded_client", group:"ORAC / Cognitive Core", lang:"C",
+    desc:"An ultra-lean, high-performance API written in Assembly for connecting IoT devices to the ORAC AGI agentic AI. Built for resource-constrained, embedded Linux systems.",
+    updated:"2025-08-07" },
+  { name:"orac-node", group:"ORAC / Cognitive Core", lang:"Python",
+    desc:"Node-level runtime component for the ORAC system.", placeholder:true,
+    updated:"2025-08-06" },
+  { name:"orac-chat-wrapper", group:"ORAC / Cognitive Core", lang:"HTML",
+    desc:"Chat interface wrapper for interacting with ORAC.", placeholder:true,
+    updated:"2025-08-06" },
+  { name:"orac-prototype", group:"ORAC / Cognitive Core", lang:"JavaScript",
+    desc:"Early-stage prototype build of the ORAC system.", placeholder:true,
+    updated:"2025-08-29" },
+  { name:"orac-benchmark", group:"ORAC / Cognitive Core", lang:"Python",
+    desc:"Benchmarking suite for measuring ORAC performance.", placeholder:true,
+    updated:"2025-08-24" },
+  { name:"orac-proxy", group:"ORAC / Cognitive Core", lang:"Rust",
+    desc:"Proxy layer sitting in front of ORAC deployments.", placeholder:true,
+    updated:"2025-08-23" },
+  { name:"orac-os", group:"ORAC / Cognitive Core", lang:"",
+    desc:"Operating-system-level scaffolding for ORAC.", placeholder:true,
+    updated:"2025-08-22" },
+  { name:"orac-global-data", group:"ORAC / Cognitive Core", lang:"Python",
+    desc:"Shared data layer feeding the ORAC ecosystem.", placeholder:true,
+    updated:"2025-08-09" },
+  { name:"Praetor", group:"ORAC / Cognitive Core", lang:"Shell",
+    desc:"Slack-native event orchestration and AI execution layer powered by ORAC.",
+    updated:"2025-12-20" },
+
+  // ---- Security ----
+  { name:"cerberus", group:"Security", lang:"Python",
+    desc:"The Three-Headed Guardian for Gemini, an agentic AI security agent proactively safeguarding Google's Gemini models and their integrated ecosystems.",
+    updated:"2025-07-27" },
+
+  // ---- Tooling & Automation ----
+  { name:"GitForge", group:"Tooling & Automation", lang:"",
+    desc:"Git repository tooling / forge utility.", placeholder:true,
+    updated:"2026-01-05" },
+  { name:"github_cloner", group:"Tooling & Automation", lang:"Python",
+    desc:"Script for bulk-cloning GitHub repositories.", placeholder:true,
+    updated:"2025-08-10" },
+  { name:"GitHub_Repo_Cloner", group:"Tooling & Automation", lang:"PowerShell",
+    desc:"PowerShell version of a bulk GitHub repo cloning tool.", placeholder:true,
+    updated:"2025-08-09" },
+  { name:"rust-neural-network", group:"Tooling & Automation", lang:"Rust",
+    desc:"Neural network implementation written in Rust.", placeholder:true,
+    updated:"2025-08-15" },
+  { name:"contextflow", group:"Tooling & Automation", lang:"Python",
+    desc:"contextflow", updated:"2025-08-12" },
+
+  // ---- Web & Personal ----
+  { name:"aedininsight.info", group:"Web & Personal", lang:"HTML",
+    desc:"AI SaaS", updated:"2026-07-03" },
+  { name:"axion-project.github.io", group:"Web & Personal", lang:"HTML",
+    desc:"axion-project GitHub Page", updated:"2026-07-02" },
+  { name:"astro", group:"Web & Personal", lang:"Astro",
+    desc:"Astro-based site build.", placeholder:true,
+    updated:"2025-02-27" },
+  { name:"astro-design", group:"Web & Personal", lang:"Astro",
+    desc:"Design system / component work for the Astro site.", placeholder:true,
+    updated:"2025-02-26" },
+  { name:"aedin-learns-and-grows", group:"Web & Personal", lang:"TypeScript",
+    desc:"Learning project / personal growth build.", placeholder:true,
+    updated:"2025-02-25" },
+  { name:"WordPress", group:"Web & Personal", lang:"PHP",
+    desc:"WordPress theme or plugin work.", placeholder:true,
+    updated:"2025-01-15" },
+  { name:"code", group:"Web & Personal", lang:"HTML",
+    desc:"Development Code", updated:"2025-02-27" },
+  { name:"python", group:"Web & Personal", lang:"Python",
+    desc:"Python Projects", updated:"2025-03-22" },
+  { name:"rise", group:"Web & Personal", lang:"Shell",
+    desc:"Shell-based project, name suggests a launch/bootstrap script.", placeholder:true,
+    updated:"2025-02-19" },
+  { name:"engineering", group:"Web & Personal", lang:"",
+    desc:"General engineering notes and scratch work.", placeholder:true,
+    updated:"2024-11-21" },
+  { name:"aedin", group:"Web & Personal", lang:"CSS",
+    desc:"Personal or brand-related front-end work.", placeholder:true,
+    updated:"2024-02-17" },
+];
+
+const LANG_COLORS = {
+  Python:"#3572A5", JavaScript:"#f1e05a", TypeScript:"#3178c6", Rust:"#dea584",
+  C:"#555555", Shell:"#89e051", HTML:"#e34c26", PHP:"#4F5D95", CSS:"#563d7c",
+  Astro:"#ff5a03", PowerShell:"#012456"
+};
+
+const GROUP_ORDER = ["ORAC / Cognitive Core","Security","Tooling & Automation","Web & Personal"];
+
+function timeAgo(dateStr){
+  const then = new Date(dateStr);
+  const days = Math.floor((Date.now() - then.getTime()) / 86400000);
+  if(days < 30) return days + "d ago";
+  const months = Math.floor(days/30);
+  if(months < 12) return months + "mo ago";
+  return Math.floor(months/12) + "y ago";
+}
+
+function escapeHtml(str){
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+function renderCard(r){
+  const dot = LANG_COLORS[r.lang] || "#4b5563";
+  const descClass = r.placeholder ? "repo-desc placeholder" : "repo-desc";
+  return `
+    <a class="repo-card" href="https://github.com/axion-project/${r.name}" target="_blank" rel="noopener">
+      <div class="repo-card-top">
+        <span class="repo-name mono">${escapeHtml(r.name)}</span>
+        <span class="repo-arrow">&#8599;</span>
+      </div>
+      <p class="${descClass}">${escapeHtml(r.desc)}</p>
+      <div class="repo-meta">
+        <span class="repo-lang">${r.lang ? `<span class="lang-dot" style="background:${dot}"></span>${escapeHtml(r.lang)}` : "&mdash;"}</span>
+        <span class="repo-updated">Updated ${timeAgo(r.updated)}</span>
+      </div>
+    </a>
+  `;
+}
+
+function renderAll(filter){
+  const root = document.getElementById('repo-root');
+  const groups = filter === 'all' ? GROUP_ORDER : GROUP_ORDER.filter(g => g === filter);
+  root.innerHTML = groups.map(g => {
+    const items = REPOS.filter(r => r.group === g);
+    if(!items.length) return '';
+    return `
+      <div class="repo-group">
+        <div class="repo-group-label">${escapeHtml(g)} <span class="filter-count">${items.length}</span></div>
+        <div class="repo-grid">${items.map(renderCard).join('')}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderFilters(){
+  const bar = document.getElementById('filter-bar');
+  const counts = {};
+  REPOS.forEach(r => counts[r.group] = (counts[r.group]||0) + 1);
+  const chips = ['all', ...GROUP_ORDER];
+  bar.innerHTML = chips.map(c => {
+    const label = c === 'all' ? 'All' : c;
+    const count = c === 'all' ? REPOS.length : counts[c];
+    return `<button class="filter-chip${c==='all' ? ' active':''}" data-filter="${escapeHtml(c)}">${escapeHtml(label)} <span class="filter-count">${count}</span></button>`;
+  }).join('');
+  bar.querySelectorAll('.filter-chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      bar.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderAll(btn.dataset.filter);
+    });
+  });
+}
+
+document.getElementById('stat-total').textContent = REPOS.length;
+document.getElementById('footer-updated').textContent = 'Snapshot: ' + new Date().toISOString().slice(0,10);
+renderFilters();
+renderAll('all');
+</script>
+
+</body>
+</html>
